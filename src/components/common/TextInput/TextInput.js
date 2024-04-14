@@ -1,5 +1,14 @@
 const TextInput = (props) => {
-    return <input value={props.value} onChange={props.onChange}  type="text" />
+    return (
+        <form>
+            <label>{props.children}</label>
+            <input
+                name={props.name}
+                value={props.value}
+                onChange={props.onChange}
+                type="text"
+            />
+        </form>
+    );
 };
-
 export default TextInput;

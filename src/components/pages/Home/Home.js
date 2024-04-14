@@ -1,6 +1,6 @@
 import {Container} from "react-bootstrap";
 import {Route, Routes} from "react-router-dom";
-import TableList from "../../TableList/TableList";
+import TableList from "../../views/TableList/TableList";
 
 const Home = () => {
     return (

@@ -4,8 +4,8 @@ const NavBar = () => {
     return (
         <nav>
         <ul>
+            <li><span>Waiter.app</span></li>
             <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/table">Waiter.app</NavLink></li>
         </ul>
     </nav>
     )};
