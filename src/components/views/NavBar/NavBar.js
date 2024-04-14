@@ -1,20 +1,20 @@
 import {NavLink} from 'react-router-dom';
-import {Nav} from "react-bootstrap";
+import {Navbar, Nav} from 'react-bootstrap';
+import styles from './NavBar.modules.scss';
 
 const NavBar = () => {
     return (
-        <Nav className="me-auto">
-            <div>
-               <span>Waiter.app</span>
-                    <Nav.Link as={NavLink} to="/">Home</Nav.Link>
-            </div>
-        </Nav>
+        <Navbar bg="primary" variant="dark" className={`${styles.navbar} px-4`}>
+            <Navbar.Brand className="brand me-auto">
+                Waiter.app
+            </Navbar.Brand>
+            <Nav>
+                <Nav.Link as={NavLink} to="/">
+                    Home
+                </Nav.Link>
+            </Nav>
+        </Navbar>
+    );
+};
 
-    //     <nav>
-    //     <ul>
-    //         <li><span>Waiter.app</span></li>
-    //         <li><NavLink to="/">Home</NavLink></li>
-    //     </ul>
-    // </nav>
-    )};
 export default NavBar;

@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
 import TextInput from "../../common/TextInput/TextInput";
-import Button from "../../common/Button/Button";
 import {updateTableRequest} from "../../../redux/tablesRedux";
 import SelectInput from "../../common/SelectInput/SelectInput";
+import {isStatusBusy, isTableTooSmall, isValidNumericInput} from "../utils/validations";
+import {Button} from "react-bootstrap";
+// import Button from "../../common/Button/Button";
 
-const TableForm = ({ table }) => {
+const TableForm = ({table}) => {
     const dispatch = useDispatch();
 
     const [formData, setFormData] = useState({
@@ -16,8 +18,8 @@ const TableForm = ({ table }) => {
     });
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        const {name, value} = e.target;
+        setFormData({...formData, [name]: value});
     };
 
     const handleSubmit = (e) => {
@@ -31,10 +33,10 @@ const TableForm = ({ table }) => {
     };
 
     const statusOptions = [
-        { value: "Free", label: "Free" },
-        { value: "Reserved", label: "Reserved" },
-        { value: "Cleaning", label: "Cleaning" },
-        { value: "Busy", label: "Busy" },
+        {value: "Free", label: "Free"},
+        {value: "Reserved", label: "Reserved"},
+        {value: "Cleaning", label: "Cleaning"},
+        {value: "Busy", label: "Busy"},
     ];
 
     return (
@@ -48,26 +50,29 @@ const TableForm = ({ table }) => {
                 options={statusOptions}
             />
             <div>
-            <span>People: </span>
-            <TextInput
-                name="peoplePresent"
-                value={formData.peoplePresent}
-                onChange={handleInputChange}
-            />
-            <span>/ </span>
-            <TextInput
-                name="peopleMax"
-                value={formData.peopleMax}
-                onChange={handleInputChange}
-            />
+                <span>People: </span>
+                <TextInput
+                    name="peoplePresent"
+                    value={formData.peoplePresent}
+                    onChange={handleInputChange}
+                />
+                <span>/ </span>
+                <TextInput
+                    name="peopleMax"
+                    value={formData.peopleMax}
+                    onChange={handleInputChange}
+                />
             </div>
-            <span>Bill: </span>
-            <TextInput
-                name="bill"
-                value={formData.bill}
-                onChange={handleInputChange}
-            />
+            {isStatusBusy(formData.status) && (<div>
+                <span>Bill: </span>
+                <TextInput
+                    name="bill"
+                    value={formData.bill}
+                    onChange={handleInputChange}
+                />
+            </div>)}
             <Button type="submit">Update</Button>
+            {/*<CustomButton type="submit">Update</CustomButton>*/}
         </form>
     );
 };
