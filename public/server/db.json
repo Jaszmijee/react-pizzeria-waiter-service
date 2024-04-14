@@ -2,11 +2,11 @@
   "tables": [
     {
       "id": "1",
-      "name": "Table 1",
+      "name": "Table 2",
       "status": "Reserved",
-      "peoplePresent": "45sss",
+      "peoplePresent": 2,
       "peopleMax": 6,
-      "bill": "88888"
+      "bill": "0ss"
     },
     {
       "id": "2",

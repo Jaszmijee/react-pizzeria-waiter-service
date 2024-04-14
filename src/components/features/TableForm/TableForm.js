@@ -47,6 +47,7 @@ const TableForm = ({ table }) => {
                 name="status"
                 options={statusOptions}
             />
+            <div>
             <span>People: </span>
             <TextInput
                 name="peoplePresent"
@@ -59,6 +60,7 @@ const TableForm = ({ table }) => {
                 value={formData.peopleMax}
                 onChange={handleInputChange}
             />
+            </div>
             <span>Bill: </span>
             <TextInput
                 name="bill"

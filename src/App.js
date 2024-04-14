@@ -1,11 +1,14 @@
 import {Route, Routes} from "react-router-dom";
 import NotFound from "./components/pages/NotFound/NotFound";
-import NavBar from "./components/views/NavBar/NavBar";
 import Home from "./components/pages/Home/Home";
 import Table from "./components/pages/Table/Table";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchTablesFromServer, getAllTables} from "./redux/tablesRedux";
 import {useEffect} from "react";
+import Footer from "./components/views/Footer/Footer";
+
+import {Container} from "react-bootstrap";
+import Header from "./components/views/Header/Header";
 
 const App = () => {
 
@@ -21,14 +24,15 @@ const App = () => {
 
     return (
         <main>
-            {/*<Container>*/}
-            <NavBar/>
+            <Container>
+            <Header/>
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/table/:tableId" element={<Table/>}/>
                 <Route path="*" element={<NotFound/>}/>
             </Routes>
-            {/*</Container>*/}
+            <Footer/>
+            </Container>
         </main>
     );
 };

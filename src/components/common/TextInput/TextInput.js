@@ -1,6 +1,6 @@
 const TextInput = (props) => {
     return (
-        <form>
+        <div>
             <label>{props.children}</label>
             <input
                 name={props.name}
@@ -8,7 +8,8 @@ const TextInput = (props) => {
                 onChange={props.onChange}
                 type="text"
             />
-        </form>
+        </div>
     );
 };
+
 export default TextInput;
