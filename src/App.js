@@ -3,12 +3,19 @@ import NotFound from "./components/pages/NotFound/NotFound";
 import NavBar from "./components/views/NavBar/NavBar";
 import Home from "./components/pages/Home/Home";
 import Table from "./components/pages/Table/Table";
-
+import {useDispatch} from "react-redux";
+import {fetchTablesFromServer} from "./redux/tablesRedux";
+import {useEffect} from "react";
 
 const App = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => fetchTablesFromServer(dispatch), [dispatch]);
+
     return (
         <main>
-            {/*<Container>*/}
+      {/*<Container>*/}
                 <NavBar/>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
@@ -19,6 +26,5 @@ const App = () => {
         </main>
     );
 };
-
 
 export default App;
