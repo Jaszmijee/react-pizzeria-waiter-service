@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import TextInput from "../../common/TextInput/TextInput";
 import Button from "../../common/Button/Button";
-import { updateTable } from "../../../redux/tablesRedux";
+import {updateTableRequest} from "../../../redux/tablesRedux";
 import SelectInput from "../../common/SelectInput/SelectInput";
 
 const TableForm = ({ table }) => {
@@ -27,7 +27,7 @@ const TableForm = ({ table }) => {
             name: table.name,
             ...formData,
         };
-        dispatch(updateTable(updatedTableData));
+        dispatch(updateTableRequest(updatedTableData))
     };
 
     const statusOptions = [

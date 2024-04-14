@@ -11,7 +11,7 @@ const App = () => {
 
     const dispatch = useDispatch();
 
-    useEffect(() => fetchTablesFromServer(dispatch), [dispatch]);
+    useEffect(() => dispatch(fetchTablesFromServer()), [dispatch]);
 
     return (
         <main>

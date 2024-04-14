@@ -7,6 +7,10 @@ const Table =  () => {
     const { tableId } = useParams();
     const table = useSelector((state) => getTable(state, tableId));
 
+    if (!table) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div>
             <h1>{table.name}</h1>
