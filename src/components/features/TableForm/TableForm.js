@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
+import {Form, Button, Col, Row} from "react-bootstrap";
 import TextInput from "../../common/TextInput/TextInput";
-import {updateTableRequest} from "../../../redux/tablesRedux";
 import SelectInput from "../../common/SelectInput/SelectInput";
+import {updateTableRequest} from "../../../redux/tablesRedux";
 import {isStatusBusy, isTableTooSmall, isValidNumericInput} from "../utils/validations";
-import {Button} from "react-bootstrap";
+import styles from "./TableForm.modules.scss"
 
 const TableForm = ({table}) => {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const TableForm = ({table}) => {
         peopleMax: table.peopleMax,
         bill: table.bill,
     });
+
 
     const handleInputChange = (e) => {
         const {name, value} = e.target;
@@ -48,7 +50,7 @@ const TableForm = ({table}) => {
             name: table.name,
             ...formData,
         };
-        dispatch(updateTableRequest(updatedTableData))
+        dispatch(updateTableRequest(updatedTableData));
     };
 
     const statusOptions = [
@@ -59,40 +61,76 @@ const TableForm = ({table}) => {
     ];
 
     return (
-        <form onSubmit={handleSubmit}>
-            <span>Status: </span>
-            <SelectInput
-                label="Status:"
-                value={formData.status}
-                onChange={handleInputChange}
-                name="status"
-                options={statusOptions}
-            />
-            <div>
-                <span>People: </span>
-                <TextInput
-                    name="peoplePresent"
-                    value={formData.peoplePresent}
-                    onChange={handleInputChange}
-                />
-                <span>/ </span>
-                <TextInput
-                    name="peopleMax"
-                    value={formData.peopleMax}
-                    onChange={handleInputChange}
-                />
-            </div>
-            {isStatusBusy(formData.status) && (<div>
-                <span>Bill: </span>
-                <TextInput
-                    name="bill"
-                    value={formData.bill}
-                    onChange={handleInputChange}
-                />
-            </div>)}
-            <Button type="submit">Update</Button>
-            {/*<CustomButton type="submit">Update</CustomButton>*/}
-        </form>
+        <Form onSubmit={handleSubmit}>
+            <Form.Group as={Row} controlId="status" className="inputForm">
+                <Form.Label column sm={1} className="fw-bold">
+                    Status:
+                </Form.Label>
+                <Col sm={7}>
+                    <SelectInput
+                        label=""
+                        name="status"
+                        value={formData.status}
+                        onChange={handleInputChange}
+                        options={statusOptions}
+                    />
+                </Col>
+            </Form.Group>
+
+            <Form.Group as={Row} controlId="peopleInputs" className="inputForm">
+                <Col sm={6}>
+                    <Form.Group as={Row} controlId="peopleInputs" className="inputForm">
+                        <Form.Label column sm={2} className="fw-bold">
+                            People:
+                        </Form.Label>
+                        <Col sm={2}>
+                            <TextInput
+                                label=""
+                                name="peoplePresent"
+                                value={formData.peoplePresent}
+                                onChange={handleInputChange}
+                            />
+                        </Col>
+                        <Form.Label column sm={1} className="fw-bold">
+                            /
+                        </Form.Label>
+                        <Col sm={2}>
+                            <TextInput
+                                label=""
+                                name="peopleMax"
+                                value={formData.peopleMax}
+                                onChange={handleInputChange}
+                            />
+                        </Col>
+                    </Form.Group>
+                </Col>
+            </Form.Group>
+
+            {isStatusBusy(formData.status) && (
+                <Form.Group as={Row} controlId="bill" className="inputForm">
+                    <Col sm={6}>
+                        <Form.Group as={Row} controlId="bill" className="inputForm">
+                    <Form.Label column sm={2} className="fw-bold">
+                        Bill:
+                    </Form.Label>
+                    <Col sm={1}>$</Col>
+                    <Col sm={2}>
+                        <TextInput
+                            label=""
+                            name="bill"
+                            value={formData.bill}
+                            onChange={handleInputChange}
+                        />
+                    </Col>
+                        </Form.Group>
+                    </Col>
+                </Form.Group>
+            )}
+
+            <Button variant="primary" type="submit">
+                Update
+            </Button>
+        </Form>
     );
 };
 

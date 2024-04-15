@@ -13,7 +13,7 @@ const Table =  () => {
 
     return (
         <div>
-            <h1>{table.name}</h1>
+            <h1 className="mt-4">{table.name}</h1>
             <TableForm table={table} />
         </div>
     );

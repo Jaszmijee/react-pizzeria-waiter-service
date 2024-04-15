@@ -1,14 +1,22 @@
-const TextInput = (props) => {
+import React from "react";
+import { Form, Col } from "react-bootstrap";
+import styles from './TextInput.modules.scss';
+
+const TextInput = ({ label, name, value, onChange }) => {
     return (
-        <div>
-            <label>{props.children}</label>
-            <input
-                name={props.name}
-                value={props.value}
-                onChange={props.onChange}
-                type="text"
-            />
-        </div>
+        <Form.Group as={Form.Row} className="mb-3" controlId={name}>
+            <Form.Label >
+                {label}
+            </Form.Label>
+            <Col >
+                <Form.Control className="textForm"
+                    name={name}
+                    value={value}
+                    onChange={onChange}
+                    type="text"
+                />
+            </Col>
+        </Form.Group>
     );
 };
 
