@@ -5,7 +5,6 @@ import {updateTableRequest} from "../../../redux/tablesRedux";
 import SelectInput from "../../common/SelectInput/SelectInput";
 import {isStatusBusy, isTableTooSmall, isValidNumericInput} from "../utils/validations";
 import {Button} from "react-bootstrap";
-// import Button from "../../common/Button/Button";
 
 const TableForm = ({table}) => {
     const dispatch = useDispatch();
@@ -20,6 +19,26 @@ const TableForm = ({table}) => {
     const handleInputChange = (e) => {
         const {name, value} = e.target;
         setFormData({...formData, [name]: value});
+
+        if (!(name === 'status')) {
+            if (isValidNumericInput(value)) {
+                if (name === 'peoplePresent' && isTableTooSmall(value, formData.peopleMax)) {
+                    setFormData({...formData, [name]: value, peoplePresent: 0});
+                } else {
+                    setFormData({...formData, [name]: value});
+                }
+            } else {
+                setFormData({...formData});
+            }
+
+
+        } else {
+            if (!isStatusBusy(value)) {
+                setFormData({...formData, [name]: value, bill: 0});
+            } else {
+                setFormData({...formData, [name]: value});
+            }
+        }
     };
 
     const handleSubmit = (e) => {
